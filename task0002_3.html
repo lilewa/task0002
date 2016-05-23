@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .shift{
+            width: 400px;
+            height: 200px;
+            float: left;
+        }
+        #frame{
+            width: 400px;
+            height: 200px;
+        }
+        #box{
+
+        }
+    </style>
+</head>
+<body  style=" text-align: center;padding-top: 200px; " >
+<div id="frame"   style="overflow: hidden; display: inline-block;position: relative">
+    <div id="box" style="width:1600px;position: relative " >
+        <div class="shift" style="background-color: antiquewhite;  "> 1</div>
+        <div class="shift"    style="background-color:darkblue" >2</div>
+        <div class="shift"  style="background-color:tan" >3</div>
+        <div class="shift"  style="background-color:chartreuse " >4</div>
+
+    </div>
+</div>
+</body>
+<script src="js/utilli.js"></script>
+<!--<script src="js/jquery-2.2.3.js"></script>-->
+
+<script>
+
+    // var step;
+    var divHeight;
+    var interval;
+    var intervalPage;
+    var count=0;
+    window.onload=function(){
+
+        /*  document.body.onresize=resize;
+         resize();
+         window.onscroll=scroll;*/
+        var box=$('#box');
+        var distance=0;
+        var count=0;
+        interval = setInterval(function(){
+            distance-=4;
+            box.style.left=distance+'px';
+            if(distance%400==0){
+                clearInterval(interval);
+                interval=0;
+            }
+        },10);
+        intervalPage=setInterval(function() {
+            if (!interval) {
+                count += 10;
+                if (count > 90) {
+                    interval = setInterval(function () {
+                        distance-=4;
+                        box.style.left=distance+'px';
+                        if(distance%400==0){
+                            clearInterval(interval);
+                            interval=0;
+                        }
+                    }, 10);
+                    count=0;
+                }
+            }
+
+         },100);
+    }
+
+    /*   function resize(){
+     divHeight= document.documentElement.clientHeight;
+     var  arr=  $('.shift');
+     each(arr, changeHeight);
+     }
+     function changeHeight(element,index)  {
+     element.style.height=divHeight+'px';
+     }
+     function scroll() {
+
+     if (!interval) {
+     var step= divHeight/ 200;
+     var ypositon=0;
+     var div=$('#box');
+     interval = setInterval(function () {
+     div.style.top='-'+ypositon+'px';
+     ypositon+=step;
+     }, 10);
+     setTimeout(function () {
+     clearInterval(interval);
+     interval=null;
+
+     }, 2000);
+     }
+     } */
+
+</script>
+</html>
